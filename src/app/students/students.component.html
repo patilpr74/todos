@@ -1,0 +1,66 @@
+<h2 class="mt-5">Students Details</h2>
+
+<div class="row">
+    <div class="col-lg-6 col-md-12 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group">
+                    <input #fname class="form-control" type="text" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <input #lname class="form-control" type="text" placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                    <input #email class="form-control" type="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input #contact class="form-control" type="number" placeholder="contact">
+                </div>
+                <button
+                *ngIf = '!isEditMode'
+                (click) = 'onAddStd()'
+                class="btn btn-primary btn-block">Add Student</button>
+                <button 
+                *ngIf = 'isEditMode'
+                (click) = 'onStdUpdate()'
+                class="btn btn-primary btn-block">Update Student</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6-col-md-12">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                        <th>Edit</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                    *ngFor = 'let std of stdArr; let i = index'
+                    >
+                        <td>{{1+i}}</td>
+                        <td>{{std.fname}} {{std.lname}}</td>
+                        <td>{{std.email}}</td>
+                        <td>{{std.contact}}</td>
+                        <td class="text-center">
+                            <button
+                            (click) = 'onStdEdit(std)'
+                            class="btn btn-primary btn-sm">Edit</button>
+                        </td>
+                        <td class="text-center">
+                            <button
+                            (click) = 'onStdRemove(std)'
+                            class="btn btn-danger btn-sm">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
